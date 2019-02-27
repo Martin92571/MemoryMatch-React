@@ -2,32 +2,890 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+*{
+  margin:0;
+  padding: 0;
+  border:0;
+}
+body{
+ 
+  font-family: 'Press Start 2P', cursive;
+  color:rgb(242, 242, 242);
+  background:url("./images/pokemon.jpg");
+  
+  background-size: cover;
+  text-transform: uppercase;
+
+}
+.pokemon-row{
+
+  height: 30vh;
+  width:100%;
+
+
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.landscape{
+  position: fixed;
+  display: none;
+  top:0;
+  left:0;
+  width:100vw;
+  height: 100vh;
+  background-color: rgb(0,0,0);
+  color:rgb(256,256,256);
+}
+/* .centerPokemonImg{
+  position: absolute;
+
+  bottom: 30%;
+  left: 30%;
+} */
+.pokemonAnimation1{
+  -webkit-transform: scaleX(-1);
+      -ms-transform: scaleX(-1);
+          transform: scaleX(-1);
+  height:50%;
+}
+.pokemonAnimation2{
+  height: 50%;
+}
+.health{
+  margin-bottom: 0.8%;
+}
+.pokemon1{
+  border:1px solid #f2f2f2;
+  width:31%;
+  height:100%;
+  background: url("./images/ArcanineGIF.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity:1;
+  display:inline-block;
+}
+.pokemon1:hover,.pokemon2:hover, .pokemon3:hover{
+
+  border:2px solid #f2cb05 ;
+}
+.pokemon2{
+  border:1px solid #f2f2f2;
+  width:31%;
+  height:100%;
+  background: url("./images/CharizardGIF.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity:1;
+  display:inline-block;
+  margin: 0% 0.5%;
+
+}
+.pokemon3{
+  border:1px solid #f2f2f2;
+  width:31%;
+  height:100%;
+  background: url("./images/MoltresGIF.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity:1;
+  display:inline-block;
+}
+
+.modal{
+
+  width:100%;
+  height: 100%;
+  display: block;
+  background-color:  rgb(0,0,0);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modal-content{
+  
+  width: 70%;
+  height: 90%;
+  background-color:  rgb(0,0,0);
+
+}
+
+.modalPlayerTurn{
+  height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width:70%;
+  background-color:  rgb(0,0,0);
+}
+
+.modalPokemon1{
+
+  width: 100%;
+  height: 70%;
+  background: url("./images/ArcanineGIF.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  opacity: 1;
+  display: inline-block;
+}
+.modalPokemon2{
+  width: 100%;
+  height: 70%;
+  background: url("./images/CharizardGIF.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  opacity: 1;
+  display: inline-block;
+}
+.modalPokemon3{
+  width: 100%;
+  height: 70%;
+  background: url("./images/MoltresGIF.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  opacity: 1;
+  display: inline-block;
+}
+.battlePokemon1{
+
+  width: 100%;
+  height: 100%;
+  background: url("./images/ArcanineGIF.gif");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  display: inline-block;
+}
+.battlePokemon2{
+  width: 100%;
+  height: 100%;
+  background: url("./images/CharizardGIF.gif");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  display: inline-block;
+}
+.battlePokemon3{
+  width: 100%;
+  height: 100%;
+  background: url("./images/MoltresGIF.gif");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  display: inline-block;
+}
+
+.modalPlayerText{
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.modalFlex{
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-around;
+  -ms-flex-line-pack: center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+}
+
+.nameContainer{
+  height: 30%;
+  width: 100%;
+}
+.LeftGamePly{
+  width:33%;
+
+  height:100%;
+
+  position: absolute;
+  top:0;
+
+}
+.modalName{
+ 
+  width: 50%;
+  height: 100%;
+  margin: auto;
+  background: url(./images/memoryBattle35.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+}
+.playerinput{
+
+  width: 60%;
+  height: 23%;
+  margin: -2% auto 0% auto;
+
+ 
+}
+.direction{
+  width:100%;
+  text-align: center;
+  font-size: 3vh;
+}
+.modal_text{
+  
+  width: 100%;
+  text-align: center;
+  font-size: 3.1vh;
+  margin-top: -4vh;
+}
+.input-field {
+  margin-bottom: 1em;
+  width: 100%;
+  height: 45%;
+  margin: auto;
+  display: inline-block;
+  color: rgb(0,0,0);
+  text-align: center;
+  font-size: 1.125em;
+  background-color: #f2f2f2;
+  padding: .9em 1.4em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 1.875em;
+  -webkit-transition: all .1s linear;
+  -o-transition: all .1s linear;
+  transition: all .1s linear;
+
+}
+
+
+
+.inputItems{
+  height: 100%;
+}
+.input-button{
+  width: 16.5%;
+  height: 45%;
+  border: none;
+  margin: 3% auto;
+  background: url(./images/pokeball.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+  cursor: pointer;
+
+ 
+}
+.GameTitle{
+  margin:0.8% auto 0.8% auto;
+  background: url("./images/memoryBattle30.png");
+  background-repeat: no-repeat;
+  width: 50%;
+  background-position: center;
+  height: 15%;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.stats{
+  font-size: 2.4vh;
+  width: 100%;
+  height: 75%;
+  position: relative;
+}
+.Gameplayed{
+  text-align: center;
+  margin-bottom: 0.625em;
+}
+
+.Player1,.Player2{
+  text-align: center;
+  width: 45%;
+  height: 80%;
+  display: inline-block;
+  margin-left: 1.5%;
+  margin-top: 3vh;
+
+
+
+}
+
+.NameGame{
+
+  position: absolute;
+  background-color: rgb(43,68,140);
+  background-color: rgba(43,68,140,0.8);
+  top: 0.625%;
+  left: 0.313em;
+  border-radius: 0.625em;
+  width: 100%;
+  height: 48%;
+
+}
+.mobile_BottomGameplay{
+  display:none;
+}
+.BottomGameplay{
+  position: absolute;
+  top:50%;
+  left:0.313em;
+  width:100%;
+  height: 48%;
+  background-color:rgb(0,0,0);
+  background-color:rgba(0,0,0,0.7);
+ 
+  border-radius: 0.625em;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+
+.accuracyDiv{
+  width: 100%;
+  
+  font-size: 3vh;
+}
+
+.buttonReset{
+  
+  width: 100%;
+
+}
+
+.about{
+  position: absolute;
+  top: 77%;
+  width: 100%;
+  font-size: 20px;
   color: white;
+  cursor: pointer;
+
+}
+.about a{
+  color:white;
+}
+.content{
+
+ 
+  width:100vw;
+  
+  height:100vh;
+
 }
 
-.App-link {
-  color: #61dafb;
+.aboutModal{
+  position: fixed;
+  display: block;
+  width:100vw;
+  height: 100vh;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.8);
+  
+}
+.aboutContent{
+  position: absolute;
+  width: 70%;
+  height:65%;
+  top:20%;
+  left:15%;
+  background-color: rgb(43,68,140);
+  background-color: rgba(43,68,140,0.8);
+  padding:60px;
+  text-align: center;
+}
+.aboutInnerContent{
+  font-size: 30px;
+  position: absolute;
+  top:40%;
+}
+.gameArea{
+  position: absolute;
+  top:0;
+  right:0;
+  width:67%;
+  height:100%;
+  overflow: hidden;
+  padding: 1.250% 0% 0.513% 0.938%;
+
+
+
+}
+.cards{
+  position: relative;
+  border-radius:0.625em;
+  margin: 0% 0.65%;
+
+  display: inline-block;
+  width:15%;
+  background-color:none;
+  height:32%;
+  cursor: pointer;
+
+}
+.backCardRed:hover,.backCardBlue:hover{
+  border:5px solid gold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.opacity{
+  opacity: 0.5;
+}
+.backCardBlue{
+  border:3px solid rgb(16,58,144);
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+  
+  -webkit-box-shadow: 0px 0px 10px rgb(16,58,144);
+          box-shadow: 0px 0px 10px rgb(16,58,144);
+}
+.backCardRed{
+  border:2px solid rgb(204,0,0);
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+  -webkit-box-shadow: 0px 0px 10px rgb(204,0,0);
+          box-shadow: 0px 0px 10px rgb(204,0,0);
+}
+.backCardImg{
+
+  position: absolute;
+  top:25%;
+  left: 25%;
+  background: url("./images/pokeball.png");
+  width: 50%;
+  height: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.frontCard{
+  background-color: rgb(242,183,5);
+  background-color: rgba(242,183,5,0.95);
+
+}
+.frontCardImg{
+  position: absolute;
+  top:0%;
+  left:0%;
+  width:100%;
+  height: 100%;
+  border:2px solid rgb(0,0,0);
+  border:2px solid rgb(0,0,0,0.9);
+  border-radius: 10px;
+
+}
+.hide{
+  display: none;
+}
+.arcanine{
+  background: url("./images/arcanine.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+.charzard{
+  background: url("./images/charzard.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.moltres{
+  background:url("./images/moltres.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.pickacu{
+  background: url("./images/pickacu.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.squirtle{
+  background: url("./images/Squirtle.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.sandshrew{
+  background: url("./images/sandshrew.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.bulbasaur{
+  background: url("./images/bulbasaur.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+}
+.psyduck{
+  background: url("./images/Psyduck.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.magikarp{
+  background: url("./images/Magikarp.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.animateds {
+  -webkit-animation-duration: 700ms;
+  animation-duration: 700ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animated1s {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1000ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animated10s {
+  -webkit-animation-duration: 1s;
+  animation-duration: 10000ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.animated2s{
+  -webkit-animation-duration: 1s;
+  animation-duration: 600ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-iteration-count: 3;
+          animation-iteration-count: 3;
+}
+
+.animated10s.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.animated2s.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.animated5s.infinite{
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.firstPeak{
+  background-image: url("./images/iconspokemon.png");
+}
+.secondPeak{
+  background-image: url("./images/iconspokemon.png");
+}
+
+.sneakPeak{
+
+  
+   width: 50%;
+  height: 30%; 
+  margin: 0.5% auto;
+}
+.Peak{
+  width: 24%;
+  height: 100%;
+  background-image: url(./images/iconspokemon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+.Peak:hover{
+cursor: pointer;
+}
+#btn-resize{
+  font-size: 2.8vh;
+  padding: 1.5vh 2.4vh;
+}
+@media only screen and (max-width: 769px)  {
+  body{
+      
+      height: 100vh;
+      color:#fff;
   }
-  to {
-    transform: rotate(360deg);
+  .modalFlex {
+      
+      height: 100%;
   }
+  .modal-content {
+      width: 90%;
+      height: 90%;
+      background-color: rgb(0,0,0);
+  }
+  
+  .nameContainer {
+      height: 20%;
+  }
+  .modalName{
+      -webkit-background-size:contain;
+              background-size:contain;
+      width:80%;
+      margin:0 auto;
+      height: 100%;
+  }
+  .modal_text{
+    font-size: 3vh;
+    color:#fff;
+  }
+  .direction{
+      font-size:2.7vh;
+      margin-top:0.4%;
+      color:#fff;
+  }
+  .playerinput{
+   width:100%;
+   height: 30%;
+   
+  }
+  .inputItems{
+      width: 76%;
+      height: 100%;
+      margin: 0% auto;
+  }
+  .input-field{
+   width:100%;
+   height: 35%;
+   
+  }
+  .input-button{
+      margin-top:1.5%;
+      width:20%;
+      
+
+  }
+  .pokemon1{
+   width:29%;
+  }
+  .pokemon2{
+      width:30%;
+  }
+  .pokemon3{
+      width:29%;
+  }
+ 
+  .mobile_BottomGameplay{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: space-evenly;
+      -webkit-justify-content: space-evenly;
+          -ms-flex-pack: space-evenly;
+              justify-content: space-evenly;
+      background-color: rgb(43,68,140);
+      opacity: 0.8;
+      text-align: center;
+      height: 17.45%;
+    
+      width: 100%;
+  }
+  .NameGame{
+      left:0%;
+      height: 100%;
+  }
+  .LeftGamePly{
+      position: relative;
+      height: 27.5%;
+      width: 100%;
+      background-color: rgb(43,68,140);
+      opacity: 0.8;
+  }
+  .BottomGameplay{
+      display: none;
+  }
+  .gameArea {
+      position: relative;
+     
+      width: 100%;
+      height: 55%;
+      overflow: visible;
+      margin:auto;
+     
+     
+  }
+  .content{
+      position: relative;
+      width: 100%;
+      height: 100%;
+  }
+  .cards{
+      margin: 0% 0.45%;
+      height: 31%;
+      width: 15.7%;
+  
+  }
+  .backCardBlue {
+      border: 5px solid rgb(16,58,144);
+  background-color: rgb(0,0,0);
+  opacity: 0.9;
+  -webkit-box-shadow: 0px 0px 20px rgb(16,58,144);
+          box-shadow: 0px 0px 20px rgb(16,58,144);
+  }
+  .backCardRed {
+      border: 5px solid rgb(204,0,0);
+      background-color: rgb(0,0,0);
+      opacity: 0.9;
+      -webkit-box-shadow: 0px 0px 20px rgb(204,0,0);
+              box-shadow: 0px 0px 20px rgb(204,0,0);
+  }
+  
+  .stats{
+      font-size: 1.9vh;
+  }
+  .centerPokemonImg{
+  bottom: 0;
+  }
+  .Player1,.Player2{
+      height: 80%;
+      margin-left:3%;
+  }
+ 
+  .pokemonAnimation1, .pokemonAnimation2{
+      height: 55%;
+  }
+  .health{
+      margin-bottom: 0;
+  }
+  .modalPokemon1 {
+      height: 100%;
+  }
+  .modalPokemon2 {
+      height: 100%;
+  }
+  .modalPokemon3 {
+      height: 100%;
+  }
+  .mobile_accuracyDiv{
+      font-size: 2.2vh;
+  }
+  .reset{
+      font-size: .375rem;
+  }
+  .toggleSound{
+      font-size: .375rem;
+  }
+  .mobile_buttonReset{
+      display: inline-block;
+  }
+ .landscape{
+    display: none;
+  }
+  .Peak{
+      width:20%;
+  }
+  .GameTitle{
+      height: 20%;
+  }
+  .Gameplayed{
+      margin-bottom: -3.5vh;
+  }
+  #btn-resize{
+      font-size: 1.5vh;
+  padding: .5vh 1.4vh;
+  }
+  .sneakPeak{
+      margin: 0 auto;
+  }
+ 
+
+}
+@media only screen and (max-width: 380px) {
+.stats{
+  font-size: 1.54vh;
+
+ }
+ .input-button{
+     height: 45%;
+     margin: 3% auto 0%;
+     width: 20%;
+ }
+ .input-field{
+     height: 30%;
+ }
+ .playerinput{
+     height: 30%;
+ }
+ .pokemon1,.pokemon2,.pokemon3{
+     width: 28%;
+ }
+ .nameContainer {
+  height: 25%;
+}
+ .modalName {
+  width: 100%;
+ }
+  
+ 
+
+ 
+}   
+@media only screen and (max-width: 380px) and (max-height:380px) {
+  .direction {
+      font-size: 2.7vh;
+  }
+  .modal_text {
+      font-size: 3.5vh;
+     
+  }
+  .playerinput {
+      height: 35%;
+  }
+     
+  
+     
+  }   
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS */
+  .pokemon-row{
+      height: inherit;
+  }
+  
 }
