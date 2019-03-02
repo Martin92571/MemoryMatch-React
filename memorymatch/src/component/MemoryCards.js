@@ -1,7 +1,8 @@
 import React from 'react';
 const CardBoard=(props)=>{
+    console.log(props);
     return(
-        <div class="gameArea ">
+        <div className="gameArea ">
        
         </div>
     )
