@@ -37,4 +37,4 @@ export const selectedPokemon=[
 export const victory=new Audio("victory.mp3");
 export const theme= new Audio("theme.mp3");
 export const playerColor=["backCardBlue", "backCardRed"];
-export const playerThatWon=[".GamesWon1", ".GamesWon2"];
+export const playerThatWon=[".GamesWon1", ".GamesWon2"];   
