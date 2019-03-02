@@ -1,5 +1,5 @@
 import * as pokemons from './pokemons';
-
+import * as actionTypes from './actions';
 const shufflePokemon=(array)=>{
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -55,10 +55,38 @@ players:[
 
 const reducer=(state=intialState,action)=>{
     switch(action.type){
-    
+    case actionTypes.CardClick:
+    const parent=[...action.value.parentElement.childNodes]
+    const cardLocation= parent.findIndex(index=>{
+      if(index===action.value){
+        return index;
+      }else{
+        return null
+      }
+     })
+     console.log(cardLocation);
+     console.log(state.players[state.currentPlayer].pokemonShuffle[cardLocation].flipped=true)
+     const currentPlayer=state.currentPlayer;
+     return{ ...state,
+              players:{
+                ...state.players,
+                [`players[${currentPlayer}`]:{
+                  ...state.players[state.currentPlayer],
+                  pokemonShuffle:{
+                    ...state.players[state.currentPlayer].pokemonShuffle,
+                    [`pokemonShuffle[${cardLocation}`]:{
+                      ...state.players[currentPlayer].pokemonShuffle[cardLocation],
+                      flipped:true
+                    }
+                  }
+                }
+                
+              }
+     }
+     default :
+     return state;
     }
 
-    return state
 }
 
 export default reducer

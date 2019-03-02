@@ -4,13 +4,13 @@ const Card =(props)=>{
     console.log(props);
     let CardCheck;
     if(props.flipped){
-
+       CardCheck=<div className={`frontCardImg ${props.image}`}></div>
     }else{
         
         CardCheck=<div className={`backCardImg`}></div>
     }
     return(
-        <div className={`cards pickCard ${pokemons.playerColor[props.currentPlayer]}`}>
+        <div onClick={(e)=>{props.cardClick(e.currentTarget)}} className={`cards pickCard ${pokemons.playerColor[props.currentPlayer]}`}>
            {CardCheck}
         </div>
     )
