@@ -1,7 +1,7 @@
 import React from 'react';
 import * as pokemons from '../store/pokemons';
 const Card =(props)=>{
-    console.log(props);
+    
     let CardCheck;
     if(props.flipped){
        CardCheck=<div className={`frontCardImg ${props.image}`}></div>

@@ -7,7 +7,17 @@ import * as actionTypes from './store/actions';
 import './App.css';
 
 class App extends Component {
+ 
   render() {
+    if(this.props.first_card_clicked!=null && this.props.second_card_clicked!=null){
+    if(this.props.first_card_clicked.number===this.props.second_card_clicked.number){
+       ()=>{this.props.cardsMatch()}
+       return
+    }else{
+    ()=>{this.props.cardsNoMatch()}
+    return
+    }
+  }
     return (
       <div className="App">
          <Modal/>
@@ -23,21 +33,28 @@ class App extends Component {
       </div>
     );
   }
+  
+ 
 }
+
 const mapToProps=(state)=>{
-  console.log(state);
+  
   return{
     currentPlayer:state.currentPlayer,
     second_card_clicked:state.second_card_clicked,
     first_card_clicked:state.first_card_clicked,
-    indexClick:state.indexClick,
+    indexClick:state.indexClick,  
     players:state.players
   }
 }
 
 const mapStateToProps=(dispatch)=>{
+  
+
   return{
-     onCardClick:(e)=>dispatch({type:actionTypes.CardClick,value:e})
+     onCardClick:(e)=>dispatch({type:actionTypes.CardClick,value:e}),
+     cardsMatch:(e)=>dispatch({type:actionTypes.MATCH}),
+     cardsNoMatch:(e)=>dispatch({type:actionTypes.NOMATCH})
   }
 }
 

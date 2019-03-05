@@ -18,10 +18,10 @@ gamesPlayed:1,
 turnCounter:0,
 first_card_clicked:null,
 second_card_clicked:null,
-indexClick:{
-  firstClick: null,
-  secondClick: null
-},
+indexClick:[
+  {card: null},
+  {card: null}
+],
 soundToggle:false,
 players:[
   {
@@ -55,33 +55,99 @@ players:[
 
 const reducer=(state=intialState,action)=>{
     switch(action.type){
+
     case actionTypes.CardClick:
-    const parent=[...action.value.parentElement.childNodes]
+
+    const parent=[...action.value.parentElement.childNodes];
     const cardLocation= parent.findIndex(index=>{
       if(index===action.value){
         return index;
-      }else{
+      }else{  
         return null
       }
      })
-     console.log(cardLocation);
-     console.log(state.players[state.currentPlayer].pokemonShuffle[cardLocation].flipped=true)
+     const first_card_clicked=state.first_card_clicked;
+     let cardClicked;
+    if(first_card_clicked==null){
+      cardClicked=`first_card_clicked`;
+    }else{
+      cardClicked=`second_card_clicked`;
+    }
      const currentPlayer=state.currentPlayer;
-     return{ ...state,
-              players:{
-                ...state.players,
-                [`players[${currentPlayer}`]:{
-                  ...state.players[state.currentPlayer],
-                  pokemonShuffle:{
-                    ...state.players[state.currentPlayer].pokemonShuffle,
-                    [`pokemonShuffle[${cardLocation}`]:{
-                      ...state.players[currentPlayer].pokemonShuffle[cardLocation],
-                      flipped:true
-                    }
+     let indexClickFlag=false;
+          return{ ...state,
+               [`${cardClicked}`]:state.players[currentPlayer].pokemonShuffle[cardLocation],
+              indexClick:[
+                ...state.indexClick.map((indexCard)=>{
+                  if(indexCard.card!==null)
+                  {
+                    return indexCard;
+                  }else if(indexClickFlag!==true){
+                    indexClickFlag=true;
+                    indexCard.card=cardLocation
+                    return indexCard
+                  }else{
+                    return indexCard
                   }
-                }
+                })
+              ],
+              
+              players:[
+                ...state.players.map((play ,index)=>{
+                  if(index!==currentPlayer){
+                      return play
+                   }else{
+                      play.pokemonShuffle[cardLocation].flipped=true
+                       return play
+
+                       }
+                  
+                   },{})
                 
-              }
+              ]
+     }
+     case actionTypes.MATCH:
+     return{
+       ...state,
+       first_card_clicked:null,
+       second_card_clicked:null,
+       indexClick:[
+         ...state.indexCard.map(indexCard=>{
+           indexCard.card=null
+           return indexCard
+         },{})
+       ]
+     }
+     case actionTypes.NOMATCH:
+     return{
+      ...state,
+      first_card_clicked:null,
+      second_card_clicked:null,
+      indexClick:[
+        ...state.indexCard.map(indexCard=>{
+          indexCard.card=null
+          return indexCard
+        },{})
+      ],
+      players:[
+        ...state.players.map((play ,index)=>{
+          if(index!==currentPlayer){
+              return play
+           }else{
+              state.indexCard.map(cardNumber=>{
+                play.pokemonShuffle[cardNumber.card].flipped=false
+                return null;
+              })
+              
+               return play
+
+               }
+          
+           },{})
+        
+      ]
+      
+
      }
      default :
      return state;
