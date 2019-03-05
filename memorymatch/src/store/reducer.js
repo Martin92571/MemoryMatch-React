@@ -54,6 +54,7 @@ players:[
 }
 
 const reducer=(state=intialState,action)=>{
+ 
     switch(action.type){
 
     case actionTypes.CardClick:
@@ -112,39 +113,41 @@ const reducer=(state=intialState,action)=>{
        first_card_clicked:null,
        second_card_clicked:null,
        indexClick:[
-         ...state.indexCard.map(indexCard=>{
+         ...state.indexClick.map(indexCard=>{
            indexCard.card=null
            return indexCard
          },{})
        ]
      }
      case actionTypes.NOMATCH:
+     const indexNumber=state.indexClick;
+     
      return{
       ...state,
       first_card_clicked:null,
       second_card_clicked:null,
-      indexClick:[
-        ...state.indexCard.map(indexCard=>{
-          indexCard.card=null
-          return indexCard
-        },{})
-      ],
       players:[
         ...state.players.map((play ,index)=>{
-          if(index!==currentPlayer){
+          if(index!==state.currentPlayer){
               return play
            }else{
-              state.indexCard.map(cardNumber=>{
+             
+              state.indexClick.map(cardNumber=>{
                 play.pokemonShuffle[cardNumber.card].flipped=false
                 return null;
               })
-              
                return play
 
                }
           
            },{})
         
+      ],
+      indexClick:[
+        ...state.indexClick.map(indexCard=>{
+          indexCard.card=null
+          return indexCard
+        },{})
       ]
       
 

@@ -7,17 +7,20 @@ import * as actionTypes from './store/actions';
 import './App.css';
 
 class App extends Component {
- 
-  render() {
+  componentDidUpdate(){
     if(this.props.first_card_clicked!=null && this.props.second_card_clicked!=null){
-    if(this.props.first_card_clicked.number===this.props.second_card_clicked.number){
-       ()=>{this.props.cardsMatch()}
-       return
-    }else{
-    ()=>{this.props.cardsNoMatch()}
-    return
+      if(this.props.first_card_clicked.number===this.props.second_card_clicked.number){
+        setTimeout(()=>{ this.props.cardsMatch()},1000)
+         
+      }else{
+        setTimeout(()=>{ this.props.cardsNoMatch()},1000)
+       
+      
+      }
     }
   }
+  render() {
+    
     return (
       <div className="App">
          <Modal/>
