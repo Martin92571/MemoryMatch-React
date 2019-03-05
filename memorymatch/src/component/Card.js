@@ -4,7 +4,7 @@ const Card =(props)=>{
     
     let CardCheck;
     if(props.flipped){
-       CardCheck=<div className={`frontCardImg ${props.image}`}></div>
+       CardCheck=<div  className={`frontCardImg ${props.image}`}></div>
     }else{
         
         CardCheck=<div className={`backCardImg`}></div>

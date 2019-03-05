@@ -54,11 +54,11 @@ players:[
 }
 
 const reducer=(state=intialState,action)=>{
- 
+    let newPlayer;
     switch(action.type){
 
     case actionTypes.CardClick:
-
+   
     const parent=[...action.value.parentElement.childNodes];
     const cardLocation= parent.findIndex(index=>{
       if(index===action.value){
@@ -76,7 +76,8 @@ const reducer=(state=intialState,action)=>{
     }
      const currentPlayer=state.currentPlayer;
      let indexClickFlag=false;
-          return{ ...state,
+   
+     return{ ...state,
                [`${cardClicked}`]:state.players[currentPlayer].pokemonShuffle[cardLocation],
               indexClick:[
                 ...state.indexClick.map((indexCard)=>{
@@ -108,10 +109,12 @@ const reducer=(state=intialState,action)=>{
               ]
      }
      case actionTypes.MATCH:
+     newPlayer=1- state.currentPlayer;
      return{
        ...state,
        first_card_clicked:null,
        second_card_clicked:null,
+       currentPlayer:newPlayer,
        indexClick:[
          ...state.indexClick.map(indexCard=>{
            indexCard.card=null
@@ -120,12 +123,13 @@ const reducer=(state=intialState,action)=>{
        ]
      }
      case actionTypes.NOMATCH:
-     const indexNumber=state.indexClick;
-     
+    
+     newPlayer=1- state.currentPlayer;
      return{
       ...state,
       first_card_clicked:null,
       second_card_clicked:null,
+      currentPlayer:newPlayer,
       players:[
         ...state.players.map((play ,index)=>{
           if(index!==state.currentPlayer){

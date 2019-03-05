@@ -55,7 +55,20 @@ const mapStateToProps=(dispatch)=>{
   
 
   return{
-     onCardClick:(e)=>dispatch({type:actionTypes.CardClick,value:e}),
+     onCardClick:(e)=>{
+       console.dir(e)
+    const parent=[e.parentElement.childNodes];
+    const cardLocation= parent.findIndex(index=>{
+      if(index===e){
+        return index;
+      }else{  
+        return null
+      }
+     })
+     console.log(cardLocation)
+     if(true){
+       dispatch({type:actionTypes.CardClick,value:e})}
+      },
      cardsMatch:(e)=>dispatch({type:actionTypes.MATCH}),
      cardsNoMatch:(e)=>dispatch({type:actionTypes.NOMATCH})
   }
