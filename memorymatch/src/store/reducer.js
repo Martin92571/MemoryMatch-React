@@ -35,7 +35,8 @@ players:[
     accuracy: 0,
     match: 0,
     attempts: 0,
-    pokemonShuffle:shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons)))
+    pokemonShuffle:shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons))),
+    pokemonPeakList:[]
   },
   {
     pokemon: null,
@@ -48,17 +49,22 @@ players:[
     accuracy: 0,
     match: 0,
     attempts: 0,
-    pokemonShuffle:shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons)))
+    pokemonShuffle:shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons))),
+    pokemonPeakList:[]
   }
 ],
 }
 
 const reducer=(state=intialState,action)=>{
     let newPlayer;
+
     switch(action.type){
 
     case actionTypes.CardClick:
-   
+
+    if(state.first_card_clicked!==null && state.second_card_clicked!==null){
+      return state
+    }else{
     const parent=[...action.value.parentElement.childNodes];
     const cardLocation= parent.findIndex(index=>{
       if(index===action.value){
@@ -107,8 +113,10 @@ const reducer=(state=intialState,action)=>{
                    },{})
                 
               ]
+            }
      }
      case actionTypes.MATCH:
+     
      newPlayer=1- state.currentPlayer;
      return{
        ...state,

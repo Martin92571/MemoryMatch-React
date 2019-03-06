@@ -5,6 +5,7 @@ import MemoryCards from './component/MemoryCards';
 import Modal from './component/Modal';
 import * as actionTypes from './store/actions';
 import './App.css';
+import './animated.css'
 
 class App extends Component {
   componentDidUpdate(){
@@ -41,7 +42,7 @@ class App extends Component {
 }
 
 const mapToProps=(state)=>{
-  
+
   return{
     currentPlayer:state.currentPlayer,
     second_card_clicked:state.second_card_clicked,
@@ -52,26 +53,16 @@ const mapToProps=(state)=>{
 }
 
 const mapStateToProps=(dispatch)=>{
-  
 
   return{
-     onCardClick:(e)=>{
-       console.dir(e)
-    const parent=[e.parentElement.childNodes];
-    const cardLocation= parent.findIndex(index=>{
-      if(index===e){
-        return index;
-      }else{  
-        return null
-      }
-     })
-     console.log(cardLocation)
-     if(true){
+     onCardClick:(e,data)=>{
+     if(e.children[0].dataset.set!=="flipped" ){
        dispatch({type:actionTypes.CardClick,value:e})}
       },
      cardsMatch:(e)=>dispatch({type:actionTypes.MATCH}),
      cardsNoMatch:(e)=>dispatch({type:actionTypes.NOMATCH})
   }
 }
+
 
 export default connect(mapToProps,mapStateToProps)(App);
