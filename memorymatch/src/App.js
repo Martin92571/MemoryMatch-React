@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
          <Modal/>
-         <PlayerData/>
+         <PlayerData players={this.props.players} />
          <MemoryCards
          currentPlayer={this.props.currentPlayer}
          first_card_clicked={this.props.first_card_clicked}
@@ -42,7 +42,7 @@ class App extends Component {
 }
 
 const mapToProps=(state)=>{
-
+   
   return{
     currentPlayer:state.currentPlayer,
     second_card_clicked:state.second_card_clicked,

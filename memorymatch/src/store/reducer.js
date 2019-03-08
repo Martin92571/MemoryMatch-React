@@ -57,67 +57,74 @@ players:[
 
 const reducer=(state=intialState,action)=>{
     let newPlayer;
-
+    
     switch(action.type){
 
     case actionTypes.CardClick:
 
-    if(state.first_card_clicked!==null && state.second_card_clicked!==null){
-      return state
-    }else{
-    const parent=[...action.value.parentElement.childNodes];
-    const cardLocation= parent.findIndex(index=>{
-      if(index===action.value){
-        return index;
-      }else{  
-        return null
-      }
-     })
-     const first_card_clicked=state.first_card_clicked;
-     let cardClicked;
-    if(first_card_clicked==null){
-      cardClicked=`first_card_clicked`;
-    }else{
-      cardClicked=`second_card_clicked`;
-    }
-     const currentPlayer=state.currentPlayer;
-     let indexClickFlag=false;
-   
-     return{ ...state,
-               [`${cardClicked}`]:state.players[currentPlayer].pokemonShuffle[cardLocation],
-              indexClick:[
-                ...state.indexClick.map((indexCard)=>{
-                  if(indexCard.card!==null)
-                  {
-                    return indexCard;
-                  }else if(indexClickFlag!==true){
-                    indexClickFlag=true;
-                    indexCard.card=cardLocation
-                    return indexCard
-                  }else{
-                    return indexCard
-                  }
-                })
-              ],
-              
-              players:[
-                ...state.players.map((play ,index)=>{
-                  if(index!==currentPlayer){
-                      return play
-                   }else{
-                      play.pokemonShuffle[cardLocation].flipped=true
-                       return play
-
-                       }
-                  
-                   },{})
-                
-              ]
+          if(state.first_card_clicked!==null && state.second_card_clicked!==null){
+            return state
+          }else{
+          const parent=[...action.value.parentElement.childNodes];
+          const cardLocation= parent.findIndex(index=>{
+            if(index===action.value){
+              return index;
+            }else{  
+              return null
             }
-     }
+           })
+           const first_card_clicked=state.first_card_clicked;
+           let cardClicked;
+          if(first_card_clicked==null){
+            cardClicked=`first_card_clicked`;
+          }else{
+            cardClicked=`second_card_clicked`;
+          }
+           const currentPlayer=state.currentPlayer;
+           let indexClickFlag=false;
+   
+           return{ ...state,
+                     [`${cardClicked}`]:state.players[currentPlayer].pokemonShuffle[cardLocation],
+                    indexClick:[
+                      ...state.indexClick.map((indexCard)=>{
+                        if(indexCard.card!==null)
+                        {
+                          return indexCard;
+                        }else if(indexClickFlag!==true){
+                          indexClickFlag=true;
+                          indexCard.card=cardLocation
+                          return indexCard
+                        }else{
+                          return indexCard
+                        }
+                      })
+                    ],
+              
+                    players:[
+                      ...state.players.map((play ,index)=>{
+                        if(index!==currentPlayer){
+                            return play
+                         }else{
+                            play.pokemonShuffle[cardLocation].flipped=true
+                             return play
+
+                             }
+                  
+                         },{})
+                
+                    ]
+                  }
+           }
      case actionTypes.MATCH:
-     
+
      newPlayer=1- state.currentPlayer;
+     let hitPointMatch;
+     if(state.first_card_clicked.number===4 && state.first_card_clicked.number ===4 ){
+         hitPointMatch=state.players[newPlayer].health - 30
+     }else{
+         hitPointMatch=state.players[newPlayer].health - 13 
+     }
+   
      return{
        ...state,
        first_card_clicked:null,
@@ -128,7 +135,16 @@ const reducer=(state=intialState,action)=>{
            indexCard.card=null
            return indexCard
          },{})
-       ]
+        ],
+        players:[
+          ...state.players.map((player,index)=>{
+            if(index===newPlayer){
+          
+              player.health=hitPointMatch
+            }
+            return player
+          })
+        ]
      }
      case actionTypes.NOMATCH:
     
