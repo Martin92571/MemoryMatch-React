@@ -2,6 +2,21 @@ import React from 'react';
 
 const PlayerData=(props)=>{
     console.log(props)
+    const peakRow=props.players[props.currentPlayer].playersPeaks.map((peak,index)=>{
+        if(props.cardPeak){
+            if(peak===null){
+                return <div key={index} onClick={(e)=>props.peak(e)} className="Peak showPeak" ></div>
+                }else{
+                   return  <div key={index} onClick={(e)=>props.peak(e)} className="Peak peakUsed" ></div>
+                }
+        }else{
+             if(peak===null){
+             return <div key={index} onClick={(e)=>props.peak(e)} className="Peak " ></div>
+             }else{
+                return  <div key={index} onClick={(e)=>props.peak(e)} className="Peak peakUsed" ></div>
+             }
+       }
+    })
     return (
         <div className="LeftGamePly ">
              <div className="NameGame">
@@ -30,9 +45,7 @@ const PlayerData=(props)=>{
                   <span className="currentPlayer">May</span>'s  Accuracy <span className="accuracy">0</span>%
                  </div>
                  <div className="sneakPeak">
-                     <div className="Peak clicked" ></div>
-                     <div className="Peak"></div>
-                     <div className="Peak"></div>
+                   {peakRow}
                  </div>
                  <div className="buttonReset"><button id="btn-resize" className="btn btn-outline-danger btn-lg reset">Reset</button>
                      <button id="btn-resize" className="btn btn-outline-success btn-lg toggleSound">Sound</button>

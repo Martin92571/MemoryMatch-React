@@ -636,6 +636,13 @@ body{
 .Peak:hover{
 cursor: pointer;
 }
+.showPeak{
+  pointer-events:none;
+}
+.peakUsed{
+  pointer-events: none;
+  opacity: 0.3;
+}
 #btn-resize{
   font-size: 2.8vh;
   padding: 1.5vh 2.4vh;

@@ -19,13 +19,22 @@ class App extends Component {
       
       }
     }
+   if(this.props.currentPokemonPeakList!==null){
+  
+       setTimeout(()=>{this.props.flipPeak()},2000)
+   }
   }
   render() {
     
     return (
       <div className="App">
          <Modal/>
-         <PlayerData players={this.props.players} />
+         <PlayerData
+         cardPeak={this.props.currentPokemonPeakList} 
+         currentPlayer={this.props.currentPlayer}
+         peak={(e)=>this.props.sneakPeak(e)} 
+         players={this.props.players} 
+         />
          <MemoryCards
          currentPlayer={this.props.currentPlayer}
          first_card_clicked={this.props.first_card_clicked}
@@ -42,13 +51,14 @@ class App extends Component {
 }
 
 const mapToProps=(state)=>{
-   
+   console.log(state);
   return{
     currentPlayer:state.currentPlayer,
     second_card_clicked:state.second_card_clicked,
     first_card_clicked:state.first_card_clicked,
     indexClick:state.indexClick,  
-    players:state.players
+    players:state.players,
+    currentPokemonPeakList:state.currentPokemonPeakList
   }
 }
 
@@ -60,7 +70,9 @@ const mapStateToProps=(dispatch)=>{
        dispatch({type:actionTypes.CardClick,value:e})}
       },
      cardsMatch:(e)=>dispatch({type:actionTypes.MATCH}),
-     cardsNoMatch:(e)=>dispatch({type:actionTypes.NOMATCH})
+     cardsNoMatch:(e)=>dispatch({type:actionTypes.NOMATCH}),
+     sneakPeak:(e)=>dispatch({type:actionTypes.PEAK}),
+     flipPeak:(e)=>dispatch({type:actionTypes.REVERTPEAK})
   }
 }
 

@@ -22,6 +22,7 @@ indexClick:[
   {card: null},
   {card: null}
 ],
+currentPokemonPeakList:null,
 soundToggle:false,
 players:[
   {
@@ -36,7 +37,7 @@ players:[
     match: 0,
     attempts: 0,
     pokemonShuffle:shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons))),
-    pokemonPeakList:[]
+   
   },
   {
     pokemon: null,
@@ -50,14 +51,13 @@ players:[
     match: 0,
     attempts: 0,
     pokemonShuffle:shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons))),
-    pokemonPeakList:[]
+   
   }
 ],
 }
 
 const reducer=(state=intialState,action)=>{
     let newPlayer;
-    
     switch(action.type){
 
     case actionTypes.CardClick:
@@ -115,74 +115,116 @@ const reducer=(state=intialState,action)=>{
                     ]
                   }
            }
-     case actionTypes.MATCH:
+    case actionTypes.MATCH:
 
-     newPlayer=1- state.currentPlayer;
-     let hitPointMatch;
-     if(state.first_card_clicked.number===4 && state.first_card_clicked.number ===4 ){
-         hitPointMatch=state.players[newPlayer].health - 30
-     }else{
-         hitPointMatch=state.players[newPlayer].health - 13 
-     }
+         newPlayer=1- state.currentPlayer;
+         let hitPointMatch;
+         if(state.first_card_clicked.number===4 && state.first_card_clicked.number ===4 ){
+             hitPointMatch=state.players[newPlayer].health - 30
+         }else{
+             hitPointMatch=state.players[newPlayer].health - 13 
+         }
    
-     return{
-       ...state,
-       first_card_clicked:null,
-       second_card_clicked:null,
-       currentPlayer:newPlayer,
-       indexClick:[
-         ...state.indexClick.map(indexCard=>{
-           indexCard.card=null
-           return indexCard
-         },{})
-        ],
-        players:[
-          ...state.players.map((player,index)=>{
-            if(index===newPlayer){
-          
-              player.health=hitPointMatch
-            }
-            return player
-          })
-        ]
-     }
-     case actionTypes.NOMATCH:
-    
-     newPlayer=1- state.currentPlayer;
-     return{
-      ...state,
-      first_card_clicked:null,
-      second_card_clicked:null,
-      currentPlayer:newPlayer,
-      players:[
-        ...state.players.map((play ,index)=>{
-          if(index!==state.currentPlayer){
-              return play
-           }else{
-             
-              state.indexClick.map(cardNumber=>{
-                play.pokemonShuffle[cardNumber.card].flipped=false
-                return null;
+         return{
+           ...state,
+           first_card_clicked:null,
+           second_card_clicked:null,
+           currentPlayer:newPlayer,
+           indexClick:[
+             ...state.indexClick.map(indexCard=>{
+               indexCard.card=null
+               return indexCard
+             },{})
+            ],
+            players:[
+              ...state.players.map((player,index)=>{
+                if(index===newPlayer){
+              
+                  player.health=hitPointMatch
+                }
+                return player
               })
-               return play
+            ]
+         }
+    case actionTypes.NOMATCH:
+    
+         newPlayer=1- state.currentPlayer;
+         return{
+          ...state,
+          first_card_clicked:null,
+          second_card_clicked:null,
+          currentPlayer:newPlayer,
+          players:[
+            ...state.players.map((play ,index)=>{
+              if(index!==state.currentPlayer){
+                  return play
+               }else{
+                 
+                  state.indexClick.map(cardNumber=>{
+                    play.pokemonShuffle[cardNumber.card].flipped=false
+                    return null;
+                  })
+                   return play
 
-               }
+                }
           
-           },{})
+               },{})
         
-      ],
-      indexClick:[
-        ...state.indexClick.map(indexCard=>{
-          indexCard.card=null
-          return indexCard
-        },{})
-      ]
+          ],
+          indexClick:[
+            ...state.indexClick.map(indexCard=>{
+            
+              return {...indexCard,card:null}
+            },{})
+          ]
       
 
-     }
-     default :
+         }
+    case actionTypes.PEAK:
+       const currentPlayerCard=state.players[state.currentPlayer].pokemonShuffle.map((cardList,index)=>{
+        return {...cardList}
+      });
+       const changePeak=currentPlayerCard.map((cardList,index)=>{
+
+        return {...cardList, flipped:true}
+      })
+    
+        return{
+          ...state,
+          currentPokemonPeakList:currentPlayerCard
+           ,
+          players:[
+            ...state.players.map((play,index)=>{
+              if(index===state.currentPlayer){
+                play.playersPeaks[play.peakCount]="used"; 
+                play.peakCount= play.peakCount + 1;
+                play.pokemonShuffle=changePeak;
+                
+              }
+              return play
+               })
+       ]
+        }
+    case actionTypes.REVERTPEAK:
+      return{
+        ...state,
+        currentPokemonPeakList:null,
+        players:[
+          ...state.players.map((play,index)=>{
+            if(index===state.currentPlayer){
+              play.pokemonShuffle=state.currentPokemonPeakList
+             
+              
+            }
+            return play
+             })
+        ]
+      }
+    default :
      return state;
     }
+
+    
 
 }
 
