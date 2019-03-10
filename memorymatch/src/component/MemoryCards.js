@@ -8,19 +8,19 @@ const CardBoard=(props)=>{
          
             return (
                 <Card 
-                cardClick={(e)=>props.cardClick(e)} currentCards={true} currentPlayer={props.currentPlayer} key={Math.random()} 
+                peak={props.peak} cardClick={(e)=>props.cardClick(e)} currentCards={true} currentPlayer={props.currentPlayer} key={Math.random()} 
                 number={xObject.number} image={xObject.image} flipped={xObject.flipped}/>)
         }
         else if(index===props.indexClick[1].card && props.indexClick[0].card!==null){
             return (
                 <Card 
-                cardClick={(e)=>props.cardClick(e)} currentCards={true} currentPlayer={props.currentPlayer} key={Math.random()} 
+                peak={props.peak} cardClick={(e)=>props.cardClick(e)} currentCards={true} currentPlayer={props.currentPlayer} key={Math.random()} 
                 number={xObject.number} image={xObject.image} flipped={xObject.flipped}/>)
         }    
         else{
         return (
         <Card 
-        cardClick={(e)=>props.cardClick(e)} currentCards={false} currentPlayer={props.currentPlayer} key={Math.random()} 
+        peak={props.peak} cardClick={(e)=>props.cardClick(e)} currentCards={false} currentPlayer={props.currentPlayer} key={Math.random()} 
         number={xObject.number} image={xObject.image} flipped={xObject.flipped}/>)
     }})
 

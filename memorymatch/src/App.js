@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PlayerData from './PlayerSection';
+import PlayerData from './component/PlayerSection';
 import {connect} from  'react-redux';
 import MemoryCards from './component/MemoryCards';
 import Modal from './component/Modal';
@@ -42,6 +42,7 @@ class App extends Component {
          indexClick={this.props.indexClick}
          players={this.props.players}
          cardClick={(e)=>this.props.onCardClick(e)}
+         peak={this.props.currentPokemonPeakList}
          />
       </div>
     );

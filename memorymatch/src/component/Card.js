@@ -1,15 +1,18 @@
 import React from 'react';
 import * as pokemons from '../store/pokemons';
 const Card =(props)=>{
-     console.log(props)
+    
     let CardCheck;
-    if(props.flipped && props.currentCards){
-       CardCheck=<div data-set={"flipped"} className={`frontCardImg ${props.image}  animateds flipInY`}></div>
-    }else if(props.flipped && !props.currentCards){
-        CardCheck=<div data-set={"flipped"} className={`frontCardImg ${props.image}`}></div>
-        
+    if(props.peak){
+           CardCheck=<div data-set={"flipped"} className={`frontCardImg ${props.image}  animateds flipInY`}></div>
     }else{
-        CardCheck=<div className={`backCardImg`}></div>
+         if(props.flipped && props.currentCards){
+            CardCheck=<div data-set={"flipped"} className={`frontCardImg ${props.image}  animateds flipInY`}></div>
+         }else if(props.flipped && !props.currentCards){
+             CardCheck=<div data-set={"flipped"} className={`frontCardImg ${props.image}`}></div>
+         }else{
+             CardCheck=<div className={`backCardImg`}></div>
+         }
     }
     return(
         <div onClick={(e)=>{props.cardClick(e.currentTarget)}} className={`cards pickCard ${pokemons.playerColor[props.currentPlayer]}`}>

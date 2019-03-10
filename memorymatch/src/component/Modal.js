@@ -4,7 +4,7 @@ import ModalPlayerInput from './ModalPlayerInput';
 import ModalPlayerTurn from './ModalPlayerTurn';
 const Modal=(props)=>{
     let PlayerModal;
-    if(false){
+    if(true){
      PlayerModal=<div className="modal-content">
                     <div className="modalFlex">
                        <div className="nameContainer">
@@ -19,7 +19,7 @@ const Modal=(props)=>{
         PlayerModal=<ModalPlayerTurn/>
     }
     return(
-        <div  className="modal hide">
+        <div  className="modal ">
          {PlayerModal}
 
        </div>

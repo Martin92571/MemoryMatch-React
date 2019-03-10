@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Button from '@material-ui/core/Button';
+
+
+
 const PlayerData=(props)=>{
     console.log(props)
     const peakRow=props.players[props.currentPlayer].playersPeaks.map((peak,index)=>{
@@ -47,8 +51,9 @@ const PlayerData=(props)=>{
                  <div className="sneakPeak">
                    {peakRow}
                  </div>
-                 <div className="buttonReset"><button id="btn-resize" className="btn btn-outline-danger btn-lg reset">Reset</button>
-                     <button id="btn-resize" className="btn btn-outline-success btn-lg toggleSound">Sound</button>
+                 <div className="buttonReset">
+                     <Button id="btn-resize" variant="contained" color="secondary" className={` reset `}>Reset</Button>
+                     <Button id="btn-resize" variant="contained" color="primary" className={` toggleSound`}>Sound</Button>
                  </div>
              </div>
          </div>
