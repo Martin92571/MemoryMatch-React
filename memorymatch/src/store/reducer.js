@@ -220,6 +220,67 @@ const reducer=(state=intialState,action)=>{
              })
         ]
       }
+    case actionTypes.INPUTMODAL:
+    console.log(action)
+     if(action.state==="getPlayer1Name"){
+        return{
+          ...state,
+          currentState:"getPlayer1Pokemon",
+          players:[...state.players.map((play,index)=>{
+            if(index===state.currentPlayer){
+              play.name=action.value
+            }
+            return play
+          })
+          ]
+        } 
+     }else if(action.state==="getPlayer2Name"){
+      return{
+        ...state,
+        currentState:"getPlayer2Pokemon",
+        players:[...state.players.map((play,index)=>{
+          if(index===state.currentPlayer){
+            play.name=action.value
+          }
+          return play
+        })
+        ]
+      }
+     }
+     return state
+
+    case actionTypes.PLAYERPOKEMON:
+    newPlayer=1- state.currentPlayer;
+    console.log(action)
+     if(action.state==="getPlayer1Pokemon"){
+        return{
+          ...state,
+          currentState:"getPlayer2Name",
+          currentPlayer:newPlayer,
+          players:[...state.players.map((play,index)=>{
+            if(index===state.currentPlayer){
+              play.pokemon=action.value
+            }
+            return play
+          })
+          ]
+        } 
+     }else if(action.state==="getPlayer2Pokemon"){
+      return{
+        ...state,
+        currentState:"GameStart",
+        currentPlayer:newPlayer,
+        players:[...state.players.map((play,index)=>{
+          if(index===state.currentPlayer){
+            play.pokemon=action.value
+          }
+          return play
+        })
+        ]
+      }
+     }
+     return state;
+
     default :
      return state;
     }

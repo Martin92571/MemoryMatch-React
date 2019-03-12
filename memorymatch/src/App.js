@@ -28,7 +28,12 @@ class App extends Component {
     
     return (
       <div className="App">
-         <Modal/>
+         <Modal
+         currentPlayer={this.props.currentPlayer}
+         currentPlayerState={this.props.modalState}
+         inputModal={(e,state)=>this.props.inputModal(e,state)}
+         playerPokemon={(e,state)=>this.props.playerPokemon(e,state)}
+         />
          <PlayerData
          cardPeak={this.props.currentPokemonPeakList} 
          currentPlayer={this.props.currentPlayer}
@@ -54,6 +59,7 @@ class App extends Component {
 const mapToProps=(state)=>{
    console.log(state);
   return{
+    modalState:state.currentState,
     currentPlayer:state.currentPlayer,
     second_card_clicked:state.second_card_clicked,
     first_card_clicked:state.first_card_clicked,
@@ -73,7 +79,9 @@ const mapStateToProps=(dispatch)=>{
      cardsMatch:(e)=>dispatch({type:actionTypes.MATCH}),
      cardsNoMatch:(e)=>dispatch({type:actionTypes.NOMATCH}),
      sneakPeak:(e)=>dispatch({type:actionTypes.PEAK}),
-     flipPeak:(e)=>dispatch({type:actionTypes.REVERTPEAK})
+     flipPeak:(e)=>dispatch({type:actionTypes.REVERTPEAK}),
+     inputModal:(e,state)=>dispatch({type:actionTypes.INPUTMODAL,value:e,state:state}),
+     playerPokemon:(e,state)=>dispatch({type:actionTypes.PLAYERPOKEMON,value:e,state:state})
   }
 }
 
