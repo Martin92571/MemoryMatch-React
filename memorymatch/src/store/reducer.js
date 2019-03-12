@@ -129,6 +129,7 @@ const reducer=(state=intialState,action)=>{
            ...state,
            first_card_clicked:null,
            second_card_clicked:null,
+           currentState:"TurnOver",
            currentPlayer:newPlayer,
            indexClick:[
              ...state.indexClick.map(indexCard=>{
@@ -153,6 +154,7 @@ const reducer=(state=intialState,action)=>{
           ...state,
           first_card_clicked:null,
           second_card_clicked:null,
+          currentState:"TurnOver",
           currentPlayer:newPlayer,
           players:[
             ...state.players.map((play ,index)=>{
@@ -280,7 +282,12 @@ const reducer=(state=intialState,action)=>{
       }
      }
      return state;
+    case actionTypes.TURNOVER:
+    return{
+      ...state,
+      currentState:"GameStart"
 
+    }
     default :
      return state;
     }

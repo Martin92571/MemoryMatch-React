@@ -5,3 +5,4 @@ export const PEAK="PEAK";
 export const REVERTPEAK="REVERTPEAK";
 export const INPUTMODAL="INPUTMODAL";
 export const  PLAYERPOKEMON="PLAYERPOKEMON";
+export const TURNOVER="TURNOVER";

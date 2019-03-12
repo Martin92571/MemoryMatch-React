@@ -23,6 +23,9 @@ class App extends Component {
   
        setTimeout(()=>{this.props.flipPeak()},2000)
    }
+   if(this.props.modalState==="TurnOver"){
+    setTimeout(()=>{this.props.turnOver()},1500)
+   }
   }
   render() {
     
@@ -81,7 +84,8 @@ const mapStateToProps=(dispatch)=>{
      sneakPeak:(e)=>dispatch({type:actionTypes.PEAK}),
      flipPeak:(e)=>dispatch({type:actionTypes.REVERTPEAK}),
      inputModal:(e,state)=>dispatch({type:actionTypes.INPUTMODAL,value:e,state:state}),
-     playerPokemon:(e,state)=>dispatch({type:actionTypes.PLAYERPOKEMON,value:e,state:state})
+     playerPokemon:(e,state)=>dispatch({type:actionTypes.PLAYERPOKEMON,value:e,state:state}),
+     turnOver:(e)=>dispatch({type:actionTypes.TURNOVER})
   }
 }
 
