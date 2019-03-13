@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 
 const PlayerData=(props)=>{
-    console.log(props)
+    
     const peakRow=props.players[props.currentPlayer].playersPeaks.map((peak,index)=>{
         if(props.cardPeak){
             if(peak===null){

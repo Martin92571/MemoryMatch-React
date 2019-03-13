@@ -31,7 +31,7 @@ const Modal=(props)=>{
         </div>
       </div>
     }else{
-         PlayerModal=<ModalPlayerTurn/>
+         PlayerModal=<ModalPlayerTurn currentPlayer={props.currentPlayer} players={props.players}/>
     }
     return(
         

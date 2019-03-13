@@ -36,6 +36,7 @@ class App extends Component {
          currentPlayerState={this.props.modalState}
          inputModal={(e,state)=>this.props.inputModal(e,state)}
          playerPokemon={(e,state)=>this.props.playerPokemon(e,state)}
+         players={this.props.players}
          />
          <PlayerData
          cardPeak={this.props.currentPokemonPeakList} 
