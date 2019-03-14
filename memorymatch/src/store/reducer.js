@@ -130,7 +130,7 @@ const reducer=(state=intialState,action)=>{
            first_card_clicked:null,
            second_card_clicked:null,
            currentState:"TurnOver",
-           currentPlayer:newPlayer,
+           
            indexClick:[
              ...state.indexClick.map(indexCard=>{
                indexCard.card=null
@@ -149,13 +149,13 @@ const reducer=(state=intialState,action)=>{
          }
     case actionTypes.NOMATCH:
     
-         newPlayer=1- state.currentPlayer;
+        
          return{
           ...state,
           first_card_clicked:null,
           second_card_clicked:null,
           currentState:"TurnOver",
-          currentPlayer:newPlayer,
+          
           players:[
             ...state.players.map((play ,index)=>{
               if(index!==state.currentPlayer){
@@ -253,7 +253,7 @@ const reducer=(state=intialState,action)=>{
 
     case actionTypes.PLAYERPOKEMON:
     newPlayer=1- state.currentPlayer;
-    console.log(action)
+    let pokemonPicked=action.value.target.dataset.target
      if(action.state==="getPlayer1Pokemon"){
         return{
           ...state,
@@ -261,7 +261,7 @@ const reducer=(state=intialState,action)=>{
           currentPlayer:newPlayer,
           players:[...state.players.map((play,index)=>{
             if(index===state.currentPlayer){
-              play.pokemon=action.value
+              play.pokemon=pokemonPicked
             }
             return play
           })
@@ -274,7 +274,7 @@ const reducer=(state=intialState,action)=>{
         currentPlayer:newPlayer,
         players:[...state.players.map((play,index)=>{
           if(index===state.currentPlayer){
-            play.pokemon=action.value
+            play.pokemon=pokemonPicked
           }
           return play
         })
@@ -283,8 +283,10 @@ const reducer=(state=intialState,action)=>{
      }
      return state;
     case actionTypes.TURNOVER:
+    newPlayer=1- state.currentPlayer;
     return{
       ...state,
+      currentPlayer:newPlayer,
       currentState:"GameStart"
 
     }

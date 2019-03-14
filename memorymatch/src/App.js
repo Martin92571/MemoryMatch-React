@@ -11,10 +11,10 @@ class App extends Component {
   componentDidUpdate(){
     if(this.props.first_card_clicked!=null && this.props.second_card_clicked!=null){
       if(this.props.first_card_clicked.number===this.props.second_card_clicked.number){
-        setTimeout(()=>{ this.props.cardsMatch()},1000)
+        setTimeout(()=>{ this.props.cardsMatch()},1500)
          
       }else{
-        setTimeout(()=>{ this.props.cardsNoMatch()},1000)
+        setTimeout(()=>{ this.props.cardsNoMatch()},1500)
        
       
       }
@@ -23,8 +23,8 @@ class App extends Component {
   
        setTimeout(()=>{this.props.flipPeak()},2000)
    }
-   if(this.props.modalState==="TurnOver"){
-    setTimeout(()=>{this.props.turnOver()},1500)
+   if(this.props.modalState==="TurnOver" ){
+    setTimeout(()=>{this.props.turnOver()},1200)
    }
   }
   render() {

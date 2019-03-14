@@ -6,7 +6,7 @@ const ModalBody=props=>{
         hide="hide"
     }
     return(
-        <div className={`modal ${hide}`}>
+        <div className={`modal ${hide} ${props.slide}`}>
           {props.playerModal}
         </div>
     )
