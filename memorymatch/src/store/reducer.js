@@ -187,7 +187,7 @@ const reducer=(state=intialState,action)=>{
         currentState:"TurnOver"
 
       }
-    }else if(updatesPoints<0 && opponentHealth<=0){
+    }else if( opponentHealth<=0){
       return{
         ...state,
         hitPoints:null,
