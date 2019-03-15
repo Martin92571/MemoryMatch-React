@@ -16,6 +16,7 @@ currentState:"getPlayer1Name",
 currentPlayer: 0,
 gamesPlayed:1,
 turnCounter:0,
+hitPoints:null,
 first_card_clicked:null,
 second_card_clicked:null,
 indexClick:[
@@ -117,19 +118,20 @@ const reducer=(state=intialState,action)=>{
            }
     case actionTypes.MATCH:
 
-         newPlayer=1- state.currentPlayer;
+         
          let hitPointMatch;
          if(state.first_card_clicked.number===4 && state.first_card_clicked.number ===4 ){
-             hitPointMatch=state.players[newPlayer].health - 30
+             hitPointMatch= 30
          }else{
-             hitPointMatch=state.players[newPlayer].health - 13 
+             hitPointMatch= 13 
          }
    
          return{
            ...state,
+           hitPoints:hitPointMatch,
            first_card_clicked:null,
            second_card_clicked:null,
-           currentState:"TurnOver",
+           
            
            indexClick:[
              ...state.indexClick.map(indexCard=>{
@@ -137,15 +139,7 @@ const reducer=(state=intialState,action)=>{
                return indexCard
              },{})
             ],
-            players:[
-              ...state.players.map((player,index)=>{
-                if(index===newPlayer){
-              
-                  player.health=hitPointMatch
-                }
-                return player
-              })
-            ]
+           
          }
     case actionTypes.NOMATCH:
     
@@ -182,6 +176,40 @@ const reducer=(state=intialState,action)=>{
       
 
          }
+    case actionTypes.HITPOINTS:
+    newPlayer=1- state.currentPlayer
+    let updatesPoints=parseInt(state.hitPoints)-1;
+    let opponentHealth=parseInt(state.players[newPlayer].health)-1;
+    if(updatesPoints<0 && opponentHealth>0){
+      return{
+        ...state,
+        hitPoints:null,
+        currentState:"TurnOver"
+
+      }
+    }else if(updatesPoints<0 && opponentHealth<=0){
+      return{
+        ...state,
+        hitPoints:null,
+        currentState:"GameOver"
+
+      }
+    }else{
+      return{
+        ...state,
+        hitPoints:updatesPoints,
+        Players:[
+          ...state.players.map((play,index)=>{
+            if(index===newPlayer){
+            play.health=opponentHealth
+            }
+            return play
+            })
+          ]
+        }
+    }
+    
+    
     case actionTypes.PEAK:
        const currentPlayerCard=state.players[state.currentPlayer].pokemonShuffle.map((cardList,index)=>{
         return {...cardList}
@@ -223,35 +251,41 @@ const reducer=(state=intialState,action)=>{
         ]
       }
     case actionTypes.INPUTMODAL:
-    console.log(action)
-     if(action.state==="getPlayer1Name"){
-        return{
-          ...state,
-          currentState:"getPlayer1Pokemon",
-          players:[...state.players.map((play,index)=>{
-            if(index===state.currentPlayer){
-              play.name=action.value
-            }
-            return play
-          })
-          ]
-        } 
-     }else if(action.state==="getPlayer2Name"){
-      return{
-        ...state,
-        currentState:"getPlayer2Pokemon",
-        players:[...state.players.map((play,index)=>{
-          if(index===state.currentPlayer){
-            play.name=action.value
-          }
-          return play
-        })
-        ]
-      }
-     }
-     return state
+    
+    if(action.value!==""){
+        if(action.state==="getPlayer1Name"){
+           return{
+             ...state,
+             currentState:"getPlayer1Pokemon",
+             players:[...state.players.map((play,index)=>{
+               if(index===state.currentPlayer){
+                 play.name=action.value
+               }
+               return play
+             })
+             ]
+           } 
+        }else if(action.state==="getPlayer2Name"){
+         return{
+           ...state,
+           currentState:"getPlayer2Pokemon",
+           players:[...state.players.map((play,index)=>{
+             if(index===state.currentPlayer){
+               play.name=action.value
+             }
+             return play
+           })
+           ]
+         }
+        }
+    }else{
+      return state
+    }
+    return state
+   
 
     case actionTypes.PLAYERPOKEMON:
+
     newPlayer=1- state.currentPlayer;
     let pokemonPicked=action.value.target.dataset.target
      if(action.state==="getPlayer1Pokemon"){

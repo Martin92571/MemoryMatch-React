@@ -8,6 +8,10 @@ import './App.css';
 import './animated.css'
 
 class App extends Component {
+  componentWillMount(){
+   console.log(this);
+   
+  }
   componentDidUpdate(){
     if(this.props.first_card_clicked!=null && this.props.second_card_clicked!=null){
       if(this.props.first_card_clicked.number===this.props.second_card_clicked.number){
@@ -19,6 +23,9 @@ class App extends Component {
       
       }
     }
+   if(this.props.hitPoints!==null){
+      setTimeout(()=>{this.props.hitPointShow()},70)
+   }
    if(this.props.currentPokemonPeakList!==null){
   
        setTimeout(()=>{this.props.flipPeak()},2000)
@@ -31,20 +38,15 @@ class App extends Component {
     
     return (
       <div className="App">
-         <Modal
-         currentPlayer={this.props.currentPlayer}
+          <PlayerData
          currentPlayerState={this.props.modalState}
-         inputModal={(e,state)=>this.props.inputModal(e,state)}
-         playerPokemon={(e,state)=>this.props.playerPokemon(e,state)}
-         players={this.props.players}
-         />
-         <PlayerData
          cardPeak={this.props.currentPokemonPeakList} 
          currentPlayer={this.props.currentPlayer}
          peak={(e)=>this.props.sneakPeak(e)} 
          players={this.props.players} 
          />
          <MemoryCards
+         currentPlayerState={this.props.modalState}
          currentPlayer={this.props.currentPlayer}
          first_card_clicked={this.props.first_card_clicked}
          second_card_clicked={this.props.second_card_clicked}
@@ -53,6 +55,14 @@ class App extends Component {
          cardClick={(e)=>this.props.onCardClick(e)}
          peak={this.props.currentPokemonPeakList}
          />
+         <Modal
+         currentPlayer={this.props.currentPlayer}
+         currentPlayerState={this.props.modalState}
+         inputModal={(e,state)=>this.props.inputModal(e,state)}
+         playerPokemon={(e,state)=>this.props.playerPokemon(e,state)}
+         players={this.props.players}
+         />
+        
       </div>
     );
   }
@@ -69,7 +79,8 @@ const mapToProps=(state)=>{
     first_card_clicked:state.first_card_clicked,
     indexClick:state.indexClick,  
     players:state.players,
-    currentPokemonPeakList:state.currentPokemonPeakList
+    currentPokemonPeakList:state.currentPokemonPeakList,
+    hitPoints:state.hitPoints
   }
 }
 
@@ -86,7 +97,8 @@ const mapStateToProps=(dispatch)=>{
      flipPeak:(e)=>dispatch({type:actionTypes.REVERTPEAK}),
      inputModal:(e,state)=>dispatch({type:actionTypes.INPUTMODAL,value:e,state:state}),
      playerPokemon:(e,state)=>dispatch({type:actionTypes.PLAYERPOKEMON,value:e,state:state}),
-     turnOver:(e)=>dispatch({type:actionTypes.TURNOVER})
+     turnOver:(e)=>dispatch({type:actionTypes.TURNOVER}),
+     hitPointShow:(e)=>dispatch({type:actionTypes.HITPOINTS})
   }
 }
 

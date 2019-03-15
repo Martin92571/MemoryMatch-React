@@ -5,7 +5,14 @@ import Button from '@material-ui/core/Button';
 
 
 const PlayerData=(props)=>{
-    
+    let toHide;
+    if(props.currentPlayerState!=="GameStart" && props.currentPlayerState!=="TurnOver"){
+        toHide={
+            display:'none'
+        }
+    }else{
+        toHide={};
+    }
     const peakRow=props.players[props.currentPlayer].playersPeaks.map((peak,index)=>{
         if(props.cardPeak){
             if(peak===null){
@@ -21,9 +28,10 @@ const PlayerData=(props)=>{
              }
        }
     })
+  
     return (
-        <div className="LeftGamePly ">
-             <div className="NameGame">
+        <div style={toHide} className={`LeftGamePly`}>
+             <div className="NameGame ">
                 <div className="GameTitle"></div>
                  <div className="stats">
                  <div className="Gameplayed">Game:<span className="gameAmount">1</span></div>

@@ -4,11 +4,12 @@ import ModalPlayerInput from './ModalPlayerInput';
 import ModalPlayerTurn from './ModalPlayerTurn';
 import ModalCore from './ModalCore.js';
 const Modal=(props)=>{
-  console.log(props);
+  
     let PlayerModal;
     let SlideDown;
     if(props.currentPlayerState==="getPlayer1Name" || props.currentPlayerState==="getPlayer2Name"){
-     PlayerModal=
+      SlideDown="";
+      PlayerModal=
      
      <div className="modal-content">
                     <div className="modalFlex">
@@ -21,7 +22,8 @@ const Modal=(props)=>{
                     </div>
                  </div>
     }else if(props.currentPlayerState==="getPlayer1Pokemon" || props.currentPlayerState==="getPlayer2Pokemon"){
-      PlayerModal=<div  className="modal-content">
+      SlideDown="";
+     PlayerModal=<div  className="modal-content">
       <div className="modalFlex">
          <div className="nameContainer">
            <div className="modalName"></div>

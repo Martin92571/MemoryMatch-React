@@ -1,7 +1,7 @@
 import React from 'react';
 import * as pokemons from '../store/pokemons';
 const Card =(props)=>{
-    
+ 
     let CardCheck;
     if(props.peak){
            CardCheck=<div data-set={"flipped"} className={`frontCardImg ${props.image}  animateds flipInY`}></div>
