@@ -40,7 +40,7 @@ const Modal=(props)=>{
          PlayerModal=<ModalPlayerTurn currentPlayer={props.currentPlayer} players={props.players}/>
     }else{
       SlideDown="animated slideInDown";
-      PlayerModal=<ModalGameOver playagain={()=>props.playAgain} currentPlayer={props.currentPlayer} players={props.players}/>
+      PlayerModal=<ModalGameOver playagain={()=>props.playAgain()} currentPlayer={props.currentPlayer} players={props.players}/>
     }
     return(
         

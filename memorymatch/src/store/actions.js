@@ -8,4 +8,5 @@ export const  PLAYERPOKEMON="PLAYERPOKEMON";
 export const TURNOVER="TURNOVER";
 export const HITPOINTS="HITPOINTS";
 export const PLAYAGAIN="PLAYAGAIN";
+export const RESET="RESET";
 export const SOUNDTOGGLE="SOUNDTOGGLE";

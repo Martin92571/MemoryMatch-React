@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 const PlayerData=(props)=>{
     console.log(props)
     let toHide;
-    if(props.currentPlayerState!=="GameStart" && props.currentPlayerState!=="TurnOver"){
+    if(props.currentPlayerState!=="GameStart" && props.currentPlayerState!=="TurnOver" && props.currentPlayerState!=="GameOver"){
         toHide={
             display:'none'
         }
@@ -35,7 +35,7 @@ const PlayerData=(props)=>{
              <div className="NameGame ">
                 <div className="GameTitle"></div>
                  <div className="stats">
-                 <div className="Gameplayed">Game:<span className="gameAmount">1</span></div>
+                 <div className="Gameplayed">Game:<span className="gameAmount">{props.gamesPlayed}</span></div>
                  <div className="Player1">
                      <div className="player1Name">{props.players[0].name}</div>
                      <div className="health">Health: <span className="health1">{props.players[0].health}</span>%</div>
@@ -55,13 +55,13 @@ const PlayerData=(props)=>{
              </div>
              <div className="BottomGameplay">
                  <div className="accuracyDiv">
-                  <span className="currentPlayer">May</span>'s  Accuracy <span className="accuracy">0</span>%
+                  <span className="currentPlayer">May</span>'s  Accuracy <span className="accuracy">{props.players[props.currentPlayer].accuracy}</span>%
                  </div>
                  <div className="sneakPeak">
                    {peakRow}
                  </div>
                  <div className="buttonReset">
-                     <Button onClick={()=>props.playAgain()} id="btn-resize" variant="contained" color="secondary" className={` reset `}>Reset</Button>
+                     <Button onClick={()=>props.reset()} id="btn-resize" variant="contained" color="secondary" className={` reset `}>Reset</Button>
                      <Button id="btn-resize" variant="contained" color="primary" className={` toggleSound`}>Sound</Button>
                  </div>
              </div>

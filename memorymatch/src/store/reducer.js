@@ -118,7 +118,7 @@ const reducer=(state=intialState,action)=>{
            }
     case actionTypes.MATCH:
 
-         
+         let currentPlayer=state.currentPlayer;
          let hitPointMatch;
          if(state.first_card_clicked.number===4 && state.first_card_clicked.number ===4 ){
              hitPointMatch= 30
@@ -132,7 +132,16 @@ const reducer=(state=intialState,action)=>{
            first_card_clicked:null,
            second_card_clicked:null,
            
-           
+           players:[
+            ...state.players.map((play,index)=>{
+              if(index===currentPlayer){
+              play.match=play.match + 1  
+              play.attempts=play.attempts +1
+              play.accuracy=parseFloat(play.match/play.attempts).toFixed(2)*100
+              }
+              return play
+              })
+            ],
            indexClick:[
              ...state.indexClick.map(indexCard=>{
                indexCard.card=null
@@ -155,7 +164,8 @@ const reducer=(state=intialState,action)=>{
               if(index!==state.currentPlayer){
                   return play
                }else{
-                 
+                  play.attempts=play.attempts + 1
+                  play.accuracy=parseFloat(play.match/play.attempts).toFixed(2)*100
                   state.indexClick.map(cardNumber=>{
                     play.pokemonShuffle[cardNumber.card].flipped=false
                     return null;
@@ -198,7 +208,7 @@ const reducer=(state=intialState,action)=>{
       return{
         ...state,
         hitPoints:updatesPoints,
-        Players:[
+        players:[
           ...state.players.map((play,index)=>{
             if(index===newPlayer){
             play.health=opponentHealth
@@ -316,18 +326,21 @@ const reducer=(state=intialState,action)=>{
       }
      }
      return state;
+
     case actionTypes.TURNOVER:
     newPlayer=1- state.currentPlayer;
     return{
       ...state,
       currentPlayer:newPlayer,
-      currentState:"GameStart"
+      currentState:"GameStart",
+    
 
     }
     case actionTypes.SOUNDTOGGLE:
     return state;
 
     case actionTypes.PLAYAGAIN:
+
     let currentWinner=state.currentPlayer;
     let gamesPlayed=state.gamesPlayed+1;
     return {
@@ -356,7 +369,35 @@ const reducer=(state=intialState,action)=>{
       gamesPlayed:gamesPlayed,
       hitPoints:null,
 
-    };
+    }
+    
+    case actionTypes.RESET:
+    
+    let gamesAmount=state.gamesPlayed+1;
+    return {
+      ...state,
+      Players:[
+        ...state.players.map((play,index)=>{
+          play.accuracy=0
+          play.attempts=0
+          play.health=100
+          play.peakCount=0
+          play.playersPeaks=[null,null,null]
+          play.pokemonShuffle=shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons)))
+
+          return play
+        })
+        
+        
+      ],
+      currentState:"GameStart",
+      currentPlayer:0,
+      first_card_clicked:null,
+      second_card_clicked:null,
+      gamesPlayed:gamesAmount,
+      hitPoints:null,
+
+    }
     default :
      return state;
     }

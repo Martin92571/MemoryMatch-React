@@ -13,7 +13,7 @@ const ModalGameOver=(props)=>{
         <div className="modalPlayerTurn">
            <div className="modalPlayerText">{props.players[props.currentPlayer].name} You Win!</div>
            <div style={pokemonStyle} className={`modalPlayerPokemonBox modalPokemon${parseInt(props.players[props.currentPlayer].pokemon)+1}`}></div>
-           <Button onClick={props.playagain} style={btnStyle} id="btn-resize" variant="contained" color="secondary" className={` reset `}>Play Again?</Button>
+           <Button onClick={()=>props.playagain()} style={btnStyle} id="btn-resize" variant="contained" color="secondary" className={` reset `}>Play Again?</Button>
         </div>
     )
 }
