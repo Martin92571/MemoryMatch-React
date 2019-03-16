@@ -146,7 +146,7 @@ body{
 .modalPokemon1{
 
   width: 100%;
-  height: 70%;
+  height: 100%;
   background: url("./images/ArcanineGIF.gif");
   background-position: center;
   background-repeat: no-repeat;
@@ -156,7 +156,7 @@ body{
 }
 .modalPokemon2{
   width: 100%;
-  height: 70%;
+  height: 100%;
   background: url("./images/CharizardGIF.gif");
   background-position: center;
   background-repeat: no-repeat;
@@ -166,7 +166,7 @@ body{
 }
 .modalPokemon3{
   width: 100%;
-  height: 70%;
+  height: 100%;
   background: url("./images/MoltresGIF.gif");
   background-position: center;
   background-repeat: no-repeat;

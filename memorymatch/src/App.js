@@ -39,6 +39,8 @@ class App extends Component {
     return (
       <div className="App">
           <PlayerData
+           playAgain={this.props.playAgain}
+           soundToggle={this.props.soundToggle}
          currentPlayerState={this.props.modalState}
          cardPeak={this.props.currentPokemonPeakList} 
          currentPlayer={this.props.currentPlayer}
@@ -56,6 +58,7 @@ class App extends Component {
          peak={this.props.currentPokemonPeakList}
          />
          <Modal
+         playAgain={this.props.playAgain}
          currentPlayer={this.props.currentPlayer}
          currentPlayerState={this.props.modalState}
          inputModal={(e,state)=>this.props.inputModal(e,state)}
@@ -98,7 +101,9 @@ const mapStateToProps=(dispatch)=>{
      inputModal:(e,state)=>dispatch({type:actionTypes.INPUTMODAL,value:e,state:state}),
      playerPokemon:(e,state)=>dispatch({type:actionTypes.PLAYERPOKEMON,value:e,state:state}),
      turnOver:(e)=>dispatch({type:actionTypes.TURNOVER}),
-     hitPointShow:(e)=>dispatch({type:actionTypes.HITPOINTS})
+     hitPointShow:(e)=>dispatch({type:actionTypes.HITPOINTS}),
+     playAgain:(e)=>dispatch({type:actionTypes.PLAYAGAIN}),
+     soundToggle:(e)=>dispatch({type:actionTypes.SOUNDTOGGLE})
   }
 }
 

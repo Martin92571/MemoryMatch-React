@@ -324,6 +324,39 @@ const reducer=(state=intialState,action)=>{
       currentState:"GameStart"
 
     }
+    case actionTypes.SOUNDTOGGLE:
+    return state;
+
+    case actionTypes.PLAYAGAIN:
+    let currentWinner=state.currentPlayer;
+    let gamesPlayed=state.gamesPlayed+1;
+    return {
+      ...state,
+      Players:[
+        ...state.players.map((play,index)=>{
+          if(currentWinner===index){
+            play.gamesWon=play.gamesWon+1
+          }
+          play.accuracy=0
+          play.attempts=0
+          play.health=100
+          play.peakCount=0
+          play.playersPeaks=[null,null,null]
+          play.pokemonShuffle=shufflePokemon(JSON.parse(JSON.stringify(pokemons.pokemons)))
+
+          return play
+        })
+        
+        
+      ],
+      currentState:"GameStart",
+      currentPlayer:0,
+      first_card_clicked:null,
+      second_card_clicked:null,
+      gamesPlayed:gamesPlayed,
+      hitPoints:null,
+
+    };
     default :
      return state;
     }

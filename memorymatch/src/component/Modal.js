@@ -3,8 +3,9 @@ import ModalPokemon from './ModalPlayerPokemonStart';
 import ModalPlayerInput from './ModalPlayerInput';
 import ModalPlayerTurn from './ModalPlayerTurn';
 import ModalCore from './ModalCore.js';
+import ModalGameOver from './ModalGameOver';
 const Modal=(props)=>{
-  
+    console.log(props);
     let PlayerModal;
     let SlideDown;
     if(props.currentPlayerState==="getPlayer1Name" || props.currentPlayerState==="getPlayer2Name"){
@@ -34,9 +35,12 @@ const Modal=(props)=>{
          
         </div>
       </div>
-    }else{
+    }else if(props.currentPlayerState==="TurnOver"){
          SlideDown="animated slideInDown";
          PlayerModal=<ModalPlayerTurn currentPlayer={props.currentPlayer} players={props.players}/>
+    }else{
+      SlideDown="animated slideInDown";
+      PlayerModal=<ModalGameOver playagain={()=>props.playAgain} currentPlayer={props.currentPlayer} players={props.players}/>
     }
     return(
         

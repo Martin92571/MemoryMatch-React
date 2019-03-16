@@ -6,4 +6,6 @@ export const REVERTPEAK="REVERTPEAK";
 export const INPUTMODAL="INPUTMODAL";
 export const  PLAYERPOKEMON="PLAYERPOKEMON";
 export const TURNOVER="TURNOVER";
-export const HITPOINTS="HITPOINTS"
+export const HITPOINTS="HITPOINTS";
+export const PLAYAGAIN="PLAYAGAIN";
+export const SOUNDTOGGLE="SOUNDTOGGLE";

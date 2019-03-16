@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 
 
 const PlayerData=(props)=>{
+    console.log(props)
     let toHide;
     if(props.currentPlayerState!=="GameStart" && props.currentPlayerState!=="TurnOver"){
         toHide={
@@ -60,7 +61,7 @@ const PlayerData=(props)=>{
                    {peakRow}
                  </div>
                  <div className="buttonReset">
-                     <Button id="btn-resize" variant="contained" color="secondary" className={` reset `}>Reset</Button>
+                     <Button onClick={()=>props.playAgain()} id="btn-resize" variant="contained" color="secondary" className={` reset `}>Reset</Button>
                      <Button id="btn-resize" variant="contained" color="primary" className={` toggleSound`}>Sound</Button>
                  </div>
              </div>
