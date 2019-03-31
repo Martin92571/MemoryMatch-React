@@ -368,6 +368,12 @@ const reducer=(state=intialState,action)=>{
       second_card_clicked:null,
       gamesPlayed:gamesPlayed,
       hitPoints:null,
+      indexClick:[
+        ...state.indexClick.map(indexCard=>{
+          indexCard.card=null
+          return indexCard
+        },{})
+       ]
 
     }
     
@@ -396,6 +402,12 @@ const reducer=(state=intialState,action)=>{
       second_card_clicked:null,
       gamesPlayed:gamesAmount,
       hitPoints:null,
+      indexClick:[
+        ...state.indexClick.map(indexCard=>{
+          indexCard.card=null
+          return indexCard
+        },{})
+       ]
 
     }
     default :
