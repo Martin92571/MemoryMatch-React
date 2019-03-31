@@ -62,7 +62,7 @@ const PlayerData=(props)=>{
                  </div>
                  <div className="buttonReset">
                      <Button onClick={()=>props.reset()} id="btn-resize" variant="contained" color="secondary" className={` reset `}>Reset</Button>
-                     <Button id="btn-resize" variant="contained" color="primary" className={` toggleSound`}>Sound</Button>
+                     <Button onClick={()=>props.soundToggle()}id="btn-resize" variant="contained" color="primary" className={` toggleSound`}>Sound</Button>
                  </div>
              </div>
          </div>

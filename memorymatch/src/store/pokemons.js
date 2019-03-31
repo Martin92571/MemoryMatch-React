@@ -34,7 +34,7 @@ export const selectedPokemon=[
       src: "https://img.pokemondb.net/sprites/black-white/anim/shiny/moltres.gif"
     }
   ];
-export const victory=new Audio("victory.mp3");
-export const theme= new Audio("theme.mp3");
+export const victory=new Audio("memorymatch/src/theme.mp3");
+export const theme= new Audio("memorymatch/src/victory.mp3");
 export const playerColor=["backCardBlue", "backCardRed"];
 export const playerThatWon=[".GamesWon1", ".GamesWon2"];   

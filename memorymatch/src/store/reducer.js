@@ -337,7 +337,18 @@ const reducer=(state=intialState,action)=>{
 
     }
     case actionTypes.SOUNDTOGGLE:
-    return state;
+    
+    const toggle=!state.soundToggle;
+    const theme= new Audio("memorymatch/src/theme.mp3");
+    if(toggle){
+     theme.play();
+    }else{
+      theme.stop();
+    }
+    return {
+      ...state,
+      soundToggle:toggle
+    }
 
     case actionTypes.PLAYAGAIN:
 
