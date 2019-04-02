@@ -1,5 +1,8 @@
 import * as pokemons from './pokemons';
 import * as actionTypes from './actions';
+import themeSound from '../theme.mp3'
+const theme= new Audio(themeSound);
+theme.volume=0.3;
 const shufflePokemon=(array)=>{
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -339,11 +342,11 @@ const reducer=(state=intialState,action)=>{
     case actionTypes.SOUNDTOGGLE:
     
     const toggle=!state.soundToggle;
-    const theme= new Audio("memorymatch/src/theme.mp3");
+    
     if(toggle){
      theme.play();
     }else{
-      theme.stop();
+      theme.pause();
     }
     return {
       ...state,
