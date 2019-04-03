@@ -1,7 +1,10 @@
 import * as pokemons from './pokemons';
 import * as actionTypes from './actions';
-import themeSound from '../theme.mp3'
+import themeSound from '../theme.mp3';
+import victorySound from '../victory.mp3';
 const theme= new Audio(themeSound);
+const victory=new Audio(victorySound);
+victory.volume=0.3;
 theme.volume=0.3;
 const shufflePokemon=(array)=>{
     for (var i = array.length - 1; i > 0; i--) {
@@ -201,10 +204,13 @@ const reducer=(state=intialState,action)=>{
 
       }
     }else if( opponentHealth<=0){
+      theme.pause();
+      victory.play();
       return{
         ...state,
         hitPoints:null,
-        currentState:"GameOver"
+        currentState:"GameOver",
+        soundToggle:false
 
       }
     }else{
@@ -354,7 +360,7 @@ const reducer=(state=intialState,action)=>{
     }
 
     case actionTypes.PLAYAGAIN:
-
+    victory.pause();
     let currentWinner=state.currentPlayer;
     let gamesPlayed=state.gamesPlayed+1;
     return {
