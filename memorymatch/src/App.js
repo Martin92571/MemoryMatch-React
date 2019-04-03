@@ -3,6 +3,7 @@ import PlayerData from './component/PlayerSection';
 import {connect} from  'react-redux';
 import MemoryCards from './component/MemoryCards';
 import Modal from './component/Modal';
+import MobilePlayerData from './component/PlayerSectionMobile';
 import * as actionTypes from './store/actions';
 import './App.css';
 import './animated.css'
@@ -38,6 +39,14 @@ class App extends Component {
     
     return (
       <div className="App">
+        <Modal
+         playAgain={()=>this.props.playAgain()}
+         currentPlayer={this.props.currentPlayer}
+         currentPlayerState={this.props.modalState}
+         inputModal={(e,state)=>this.props.inputModal(e,state)}
+         playerPokemon={(e,state)=>this.props.playerPokemon(e,state)}
+         players={this.props.players}
+         />
           <PlayerData
            reset={()=>this.props.reset()}
            soundToggle={()=>this.props.soundToggle()}
@@ -59,14 +68,16 @@ class App extends Component {
          cardClick={(e)=>this.props.onCardClick(e)}
          peak={this.props.currentPokemonPeakList}
          />
-         <Modal
-         playAgain={()=>this.props.playAgain()}
+        <MobilePlayerData
+        reset={()=>this.props.reset()}
+        soundToggle={()=>this.props.soundToggle()}
+        currentPlayerState={this.props.modalState}
+         cardPeak={this.props.currentPokemonPeakList} 
          currentPlayer={this.props.currentPlayer}
-         currentPlayerState={this.props.modalState}
-         inputModal={(e,state)=>this.props.inputModal(e,state)}
-         playerPokemon={(e,state)=>this.props.playerPokemon(e,state)}
+         peak={(e)=>this.props.sneakPeak(e)} 
          players={this.props.players}
-         />
+         gamesPlayed={this.props.gamesPlayed}
+        />
         
       </div>
     );
