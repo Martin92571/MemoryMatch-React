@@ -19,7 +19,7 @@ const MobilePlayerData=(props)=>{
     return(
         <div className="mobile_BottomGameplay">
                  <div className="accuracyDiv">
-                  <span className="currentPlayer">May</span>'s  Accuracy <span className="accuracy">{props.players[props.currentPlayer].accuracy}</span>%
+                  <span className="currentPlayer">May</span>'s  Accuracy <span className="accuracy">{parseFloat(props.players[props.currentPlayer].accuracy).toFixed(0)}</span>%
                  </div>
                  <div className="sneakPeak">
                    {peakRow}

@@ -9,10 +9,7 @@ import './App.css';
 import './animated.css'
 
 class App extends Component {
-  componentWillMount(){
-   console.log(this);
-   
-  }
+  
   componentDidUpdate(){
     if(this.props.first_card_clicked!=null && this.props.second_card_clicked!=null){
       if(this.props.first_card_clicked.number===this.props.second_card_clicked.number){
@@ -65,7 +62,7 @@ class App extends Component {
          second_card_clicked={this.props.second_card_clicked}
          indexClick={this.props.indexClick}
          players={this.props.players}
-         cardClick={(e)=>this.props.onCardClick(e)}
+         cardClick={(e)=>this.props.onCardClick(e,this.props.modalState,this.props.hitPoints)}
          peak={this.props.currentPokemonPeakList}
          />
         <MobilePlayerData
@@ -87,7 +84,6 @@ class App extends Component {
 }
 
 const mapToProps=(state)=>{
-   console.log(state);
   return{
     modalState:state.currentState,
     currentPlayer:state.currentPlayer,
@@ -103,10 +99,10 @@ const mapToProps=(state)=>{
 }
 
 const mapStateToProps=(dispatch)=>{
-
+ 
   return{
-     onCardClick:(e,data)=>{
-     if(e.children[0].dataset.set!=="flipped" ){
+     onCardClick:(e,modalState,hitpoints)=>{
+     if(e.children[0].dataset.set!=="flipped" && modalState!=="TurnOver" && hitpoints==null){
        dispatch({type:actionTypes.CardClick,value:e})}
       },
      cardsMatch:(e)=>dispatch({type:actionTypes.MATCH}),

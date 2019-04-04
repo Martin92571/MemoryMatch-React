@@ -121,6 +121,7 @@ body{
           align-items: center;
   position: fixed;
   z-index: 15;
+  top:0;
 }
 .modal-content{
   
@@ -775,7 +776,7 @@ cursor: pointer;
   .cards{
       margin: 0% 0.45%;
       height: 28%;
-      width: 12.8%;
+      width: 12.5%;
   
   }
   .backCardBlue {
