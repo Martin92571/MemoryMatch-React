@@ -1,7 +1,7 @@
 import React from 'react';
 import ModalPokemon from './ModalPokemon';
 const ModalPokemonStart=(props)=>{
-    console.log(props.state)
+ 
     let playerOnePokemon;
     let pokemonSelect=[];
     if(props.players[0].pokemon){
@@ -17,8 +17,7 @@ const ModalPokemonStart=(props)=>{
         
         
     }
-   
-    console.log(pokemonSelect); 
+
     // pokemonSelect[playerOnePokemon].classList.add("playerOneSelectPokemon");
     return(
             <div className="pokemon-row ">

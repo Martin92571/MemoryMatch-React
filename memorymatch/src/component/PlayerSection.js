@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 
 const PlayerData=(props)=>{
-    console.log(props)
+  
     let toHide;
     if(props.currentPlayerState!=="GameStart" && props.currentPlayerState!=="TurnOver" && props.currentPlayerState!=="GameOver"){
         toHide={

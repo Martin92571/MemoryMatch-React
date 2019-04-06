@@ -5,7 +5,7 @@ import ModalPlayerTurn from './ModalPlayerTurn';
 import ModalCore from './ModalCore.js';
 import ModalGameOver from './ModalGameOver';
 const Modal=(props)=>{
-    console.log(props);
+   
     let PlayerModal;
     let SlideDown;
     if(props.currentPlayerState==="getPlayer1Name" || props.currentPlayerState==="getPlayer2Name"){

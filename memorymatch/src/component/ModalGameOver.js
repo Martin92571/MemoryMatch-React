@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 const ModalGameOver=(props)=>{
-    console.log(props)
+    
     const pokemonStyle={
         backgroundSize:"30%"
     }
