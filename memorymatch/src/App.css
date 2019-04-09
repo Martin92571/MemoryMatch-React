@@ -12,7 +12,8 @@
 }
 body{
  
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Share Tech Mono', monospace;
+
   color:rgb(242, 242, 242);
   background:url("./images/pokemon.jpg");
   
@@ -856,7 +857,7 @@ cursor: pointer;
 }
 @media only screen and (max-width: 380px) {
 .stats{
-  font-size: 1.54vh;
+  font-size: 2vh;
 
  }
  .input-button{
